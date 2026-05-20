@@ -1,9 +1,9 @@
 namespace project
 {
-    public partial class Form1 : Form
+    public partial class Login : Form
     {
 
-        public Form1()
+        public Login()
         {
             InitializeComponent();
             
@@ -16,7 +16,9 @@ namespace project
             if (text1 == "nanithe123456@gmail.com" && text2 == "0014268")
             {
                 MessageBox.Show("Đăng nhập thành công!");
-
+                Form qly = new Quanly();
+                qly.Show();
+                this.Hide();
             }
             else
             {
