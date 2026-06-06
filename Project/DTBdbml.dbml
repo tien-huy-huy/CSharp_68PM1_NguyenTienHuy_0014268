@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="quanly" Class="DTBdbmlDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=HPX360-2025\MSSQLSERVER02;Initial Catalog=quanly;Integrated Security=True;Trust Server Certificate=True" SettingsObjectName="Project.Properties.Settings" SettingsPropertyName="quanlyConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.tbl_sinhvien" Member="tbl_sinhviens">
+    <Type Name="tbl_sinhvien">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ngaysinh" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="malop" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="hovaten" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="mssv" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ghichu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Association Name="tbl_lophoc_tbl_sinhvien" Member="tbl_lophoc" ThisKey="malop" OtherKey="malop" Type="tbl_lophoc" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.tbl_lophoc" Member="tbl_lophocs">
+    <Type Name="tbl_lophoc">
+      <Column Name="id" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="malop" Type="System.String" DbType="NChar(10) NOT NULL" CanBeNull="false" />
+      <Column Name="tenlop" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="ghichu" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Association Name="tbl_lophoc_tbl_sinhvien" Member="tbl_sinhviens" ThisKey="malop" OtherKey="malop" Type="tbl_sinhvien" />
+    </Type>
+  </Table>
+</Database>
