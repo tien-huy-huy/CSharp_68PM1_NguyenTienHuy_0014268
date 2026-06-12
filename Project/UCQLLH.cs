@@ -97,14 +97,22 @@ namespace Project
 
         private void button1_Click(object sender, EventArgs e)
         {
-            String id = textBox5.Text;
-            String id_lop = textBox2.Text;
-            String ten_lop = textBox3.Text;
-            String ghi_chu = textBox4.Text;
+            tbl_lophoc lh = new tbl_lophoc();
+            lh.id = int.Parse(textBox1.Text);
+            lh.malop = textBox2.Text;
+            lh.tenlop = textBox3.Text;
+            lh.ghichu = textBox4.Text;
 
-            if (id == null)
+            try
             {
-                Console.WriteLine("id khong duoc bo trong");
+                db.tbl_lophocs.InsertOnSubmit(lh);
+                db.SubmitChanges();
+                MessageBox.Show("Them thanh cong");
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
     }

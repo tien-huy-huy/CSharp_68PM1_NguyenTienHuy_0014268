@@ -17,8 +17,9 @@ namespace Project
         private int currentPage = 1;
         private int pageSize = 1;
         private int totalPage = 0;
+       
         public UCQLSV()
-        {   
+        {
             InitializeComponent();
             Load += UCQLSV_OnLoad;
         }
@@ -26,8 +27,16 @@ namespace Project
         private void UCQLSV_OnLoad(object sender, EventArgs e)
         {
             LoadData();
-
+            comboBox1.DataSource = new List<String>
+            {
+                "Nam",
+                "Nữ"
+            };
+            comboBox2.DataSource = db.tbl_lophocs.ToList();
+            comboBox2.DisplayMember = "lop";
+            comboBox2.ValueMember = "malop";
         }
+
 
         private void button8_Click(object sender, EventArgs e)
         {
@@ -45,9 +54,10 @@ namespace Project
                 select new
                 {
                     sv.mssv,
+                    Gioitinh = sv.gioitinh ? "nam" : "nu",
                     sv.hovaten,
                     sv.ngaysinh,
-                    Tenlop = lh.tenlop,
+                    sv.malop,
                     sv.ghichu
                 };
 
@@ -55,7 +65,7 @@ namespace Project
             {
                 query = query.Where(x =>
                     x.hovaten.Contains(keyword) ||
-                    x.Tenlop.Contains(keyword) ||
+                    x.malop.Contains(keyword) ||
                     x.mssv.ToString().Contains(keyword));
             }
 
@@ -96,6 +106,28 @@ namespace Project
         {
             currentPage = totalPage;
             LoadData();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tbl_sinhvien sv = new tbl_sinhvien();
+            sv.mssv = int.Parse(textBox1.Text);
+            sv.hovaten = textBox2.Text;
+            sv.ngaysinh = DateTime.Parse(dateTimePicker1.Text);
+            sv.gioitinh = comboBox1.SelectedValue.ToString() == "Nam" ? true : false;
+            sv.malop = comboBox2.SelectedValue.ToString();
+
+            try
+            {
+                db.tbl_sinhviens.InsertOnSubmit(sv);
+                db.SubmitChanges();
+                MessageBox.Show("Thêm sinh viên thành công!");
+                LoadData();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi: " + ex.Message);
+            }
         }
     }
 }

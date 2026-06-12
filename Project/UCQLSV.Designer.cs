@@ -58,12 +58,13 @@ namespace Project
             this.comboBox2 = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.button8 = new System.Windows.Forms.Button();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.gioitinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ghichu = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.button8 = new System.Windows.Forms.Button();
             this.tableLayoutPanel2.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.flowLayoutPanel1.SuspendLayout();
@@ -151,7 +152,7 @@ namespace Project
             this.button6.Margin = new System.Windows.Forms.Padding(0);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(68, 64);
-            this.button6.TabIndex = 0;  
+            this.button6.TabIndex = 0;
             this.button6.Text = "<<";
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.button6_Click);
@@ -280,6 +281,7 @@ namespace Project
             this.button1.TabIndex = 0;
             this.button1.Text = "Thêm";
             this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // tableLayoutPanel1
             // 
@@ -329,6 +331,9 @@ namespace Project
             // comboBox1
             // 
             this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "Nam",
+            "Nữ"});
             this.comboBox1.Location = new System.Drawing.Point(3, 247);
             this.comboBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox1.Name = "comboBox1";
@@ -363,13 +368,13 @@ namespace Project
             this.flowLayoutPanel1.Location = new System.Drawing.Point(18, 46);
             this.flowLayoutPanel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(558, 333);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(558, 370);
             this.flowLayoutPanel1.TabIndex = 4;
             // 
             // comboBox2
             // 
             this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Location = new System.Drawing.Point(553, 2);
+            this.comboBox2.Location = new System.Drawing.Point(3, 317);
             this.comboBox2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.comboBox2.Name = "comboBox2";
             this.comboBox2.Size = new System.Drawing.Size(544, 33);
@@ -383,7 +388,7 @@ namespace Project
             this.groupBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.groupBox1.Size = new System.Drawing.Size(600, 371);
+            this.groupBox1.Size = new System.Drawing.Size(600, 432);
             this.groupBox1.TabIndex = 12;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin sinh viên";
@@ -395,8 +400,9 @@ namespace Project
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Column1,
             this.Column2,
-            this.Column4,
+            this.gioitinh,
             this.Column5,
+            this.Column4,
             this.ghichu});
             this.dataGridView1.Location = new System.Drawing.Point(719, 194);
             this.dataGridView1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -404,6 +410,20 @@ namespace Project
             this.dataGridView1.RowHeadersWidth = 62;
             this.dataGridView1.Size = new System.Drawing.Size(943, 487);
             this.dataGridView1.TabIndex = 11;
+            // 
+            // button8
+            // 
+            this.button8.BackColor = System.Drawing.Color.DarkSlateBlue;
+            this.button8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.button8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.button8.Location = new System.Drawing.Point(1168, 114);
+            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.button8.Name = "button8";
+            this.button8.Size = new System.Drawing.Size(150, 64);
+            this.button8.TabIndex = 17;
+            this.button8.Text = "Tìm";
+            this.button8.UseVisualStyleBackColor = false;
+            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // Column1
             // 
@@ -421,6 +441,24 @@ namespace Project
             this.Column2.Name = "Column2";
             this.Column2.Width = 150;
             // 
+            // gioitinh
+            // 
+            this.gioitinh.DataPropertyName = "gioitinh";
+            this.gioitinh.HeaderText = "Giới tính";
+            this.gioitinh.MinimumWidth = 8;
+            this.gioitinh.Name = "gioitinh";
+            this.gioitinh.Width = 150;
+            // 
+            // Column5
+            // 
+            this.Column5.DataPropertyName = "malop";
+            this.Column5.HeaderText = "Lớp";
+            this.Column5.MinimumWidth = 8;
+            this.Column5.Name = "Column5";
+            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.Column5.Width = 150;
+            // 
             // Column4
             // 
             this.Column4.DataPropertyName = "ngaysinh";
@@ -429,16 +467,6 @@ namespace Project
             this.Column4.Name = "Column4";
             this.Column4.Width = 150;
             // 
-            // Column5
-            // 
-            this.Column5.DataPropertyName = "lophoc";
-            this.Column5.HeaderText = "Lớp";
-            this.Column5.MinimumWidth = 8;
-            this.Column5.Name = "Column5";
-            this.Column5.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Column5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Column5.Width = 150;
-            // 
             // ghichu
             // 
             this.ghichu.DataPropertyName = "ghichu";
@@ -446,20 +474,6 @@ namespace Project
             this.ghichu.MinimumWidth = 8;
             this.ghichu.Name = "ghichu";
             this.ghichu.Width = 150;
-            // 
-            // button8
-            // 
-            this.button8.BackColor = System.Drawing.Color.DarkSlateBlue;
-            this.button8.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.button8.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.button8.Location = new System.Drawing.Point(1168, 114);
-            this.button8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.button8.Name = "button8";
-            this.button8.Size = new System.Drawing.Size(150, 64);
-            this.button8.TabIndex = 17;
-            this.button8.Text = "Tìm";
-            this.button8.UseVisualStyleBackColor = false;
-            this.button8.Click += new System.EventHandler(this.button8_Click);
             // 
             // UCQLSV
             // 
@@ -514,11 +528,12 @@ namespace Project
         private GroupBox groupBox1;
         private DataGridView dataGridView1;
         private Button button8;
+        private TextBox textBox5;
         private DataGridViewTextBoxColumn Column1;
         private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn gioitinh;
         private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn ghichu;
-        private TextBox textBox5;
     }
 }
