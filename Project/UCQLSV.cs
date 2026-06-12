@@ -145,5 +145,27 @@ namespace Project
                 textBox5.Text = row.Cells["ghichu"].Value?.ToString();
             }
         }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            tbl_sinhvien sv = new tbl_sinhvien();
+            sv.mssv = int.Parse(textBox1.Text);
+            sv.hovaten = textBox2.Text;
+            sv.ngaysinh = DateTime.Parse(dateTimePicker1.Text);
+            sv.gioitinh = comboBox1.SelectedValue.ToString() == "Nam" ? true : false;
+            sv.malop = comboBox2.SelectedValue.ToString();
+
+            var sinhvien = db.tbl_sinhviens.FirstOrDefault(s => s.mssv == sv.mssv);
+            if (sinhvien != null)
+            {
+                sinhvien.hovaten = sv.hovaten;
+                sinhvien.ngaysinh = sv.ngaysinh;
+                sinhvien.gioitinh = sv.gioitinh;
+                sinhvien.malop = sv.malop;
+                db.SubmitChanges();
+                MessageBox.Show("Cập nhật thành công");
+                LoadData();
+            }
+        }
     }
 }

@@ -57,7 +57,7 @@ namespace Project
                     x.id.ToString().Contains(keyword));
             }
 
-            totalPage = (int)Math.Ceiling((double)query.Count()/pageSize);
+            totalPage = (int)Math.Ceiling((double)query.Count() / pageSize);
 
             dataGridView1.DataSource = query
                 .Skip((currentPage - 1) * pageSize)
@@ -74,14 +74,14 @@ namespace Project
 
         private void button9_Click(object sender, EventArgs e)
         {
-                currentPage++;
-                LoadData();
+            currentPage++;
+            LoadData();
         }
 
         private void button7_Click(object sender, EventArgs e)
         {
-                currentPage--;
-                LoadData();
+            currentPage--;
+            LoadData();
         }
 
         private void button6_Click(object sender, EventArgs e)
@@ -119,7 +119,7 @@ namespace Project
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            
+
             if (e.RowIndex >= 0)
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
@@ -129,7 +129,28 @@ namespace Project
                 textBox3.Text = row.Cells["tenlop"].Value?.ToString();
                 textBox4.Text = row.Cells["ghichu"].Value?.ToString();
             }
-            
+
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            //tbl_lophoc lh = new tbl_lophoc();
+            //lh.id = int.Parse(textBox1.Text);
+            //lh.malop = textBox2.Text;
+            //lh.tenlop = textBox3.Text;
+            //lh.ghichu = textBox4.Text;
+
+            //var lophoc = db.tbl_lophocs.FirstOrDefault(s => s.id == lh.id);
+
+            //if (lophoc != null)
+            //{
+            //    lophoc.malop = lh.malop;
+            //    lophoc.tenlop = lh.tenlop;
+            //    lophoc.ghichu = lh.ghichu;
+            //    db.SubmitChanges();
+            //    MessageBox.Show("Cập nhật thành công");
+            //    LoadData();
+            //}
         }
     }
 }
