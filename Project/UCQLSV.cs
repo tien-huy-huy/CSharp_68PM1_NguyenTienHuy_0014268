@@ -167,5 +167,20 @@ namespace Project
                 LoadData();
             }
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            int id = int.Parse(textBox1.Text);
+
+            var sinhvien = db.tbl_sinhviens.FirstOrDefault(s => s.mssv == id);
+            if (sinhvien != null)
+            {
+                db.tbl_sinhviens.DeleteOnSubmit(sinhvien);
+                db.SubmitChanges();
+                MessageBox.Show("Xóa thành công");
+                currentPage = 1;
+                LoadData();
+            }
+        }
     }
 }
