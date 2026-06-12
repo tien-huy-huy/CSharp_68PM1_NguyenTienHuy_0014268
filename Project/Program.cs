@@ -15,8 +15,7 @@ namespace Project
             // see https://aka.ms/applicationconfiguration.
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new QLSV());
-            Application.Run(new QLLH());
+            Application.Run(new Quanly());
         }
     }
 }
