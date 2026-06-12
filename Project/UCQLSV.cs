@@ -44,6 +44,7 @@ namespace Project
             currentPage = 1;
             LoadData();
         }
+        //paginate and search function
         private void LoadData()
         {
             string keyword = textBox5.Text.Trim();
@@ -84,7 +85,7 @@ namespace Project
 
             label5.Text = $"Page {currentPage}/{totalPage}";
         }
-
+        //paginate
         private void button9_Click(object sender, EventArgs e)
         {
             currentPage++;
