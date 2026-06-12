@@ -15,6 +15,8 @@ namespace Project
     {
         DTBdbmlDataContext db = new DTBdbmlDataContext();
 
+        public event Action<string> classSelected;
+
         private int currentPage = 1;
         private int pageSize = 1;
         private int totalPage = 0;
@@ -174,6 +176,22 @@ namespace Project
                 MessageBox.Show("Xóa thành công");
                 currentPage = 1;
                 LoadData();
+            }
+        }
+
+        private void button5_Click(object sender, EventArgs e)
+        {
+            string malop = textBox2.Text;
+
+            var lophoc = db.tbl_lophocs.FirstOrDefault(s => s.malop == malop);
+
+            if (lophoc == null)
+            {
+                MessageBox.Show("Không tìm thấy mã lớp");
+            }
+            else
+            {
+                classSelected.Invoke(malop);
             }
         }
     }

@@ -18,10 +18,19 @@ namespace Project
         private int currentPage = 1;
         private int pageSize = 1;
         private int totalPage = 0;
+        private string SelectedMalop;
        
         public UCQLSV()
         {
             InitializeComponent();
+            Load += UCQLSV_OnLoad;
+        }
+
+        public UCQLSV(string malop)
+        {
+            InitializeComponent();
+            SelectedMalop = malop;
+            LoadData();
             Load += UCQLSV_OnLoad;
         }
 
@@ -63,6 +72,10 @@ namespace Project
                     sv.ghichu
                 };
 
+            if (!string.IsNullOrEmpty(SelectedMalop))
+            {
+                query = query.Where(x => x.malop == SelectedMalop);
+            }
             if (!string.IsNullOrEmpty(keyword))
             {
                 query = query.Where(x =>

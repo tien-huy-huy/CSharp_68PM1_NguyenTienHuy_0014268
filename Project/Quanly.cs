@@ -13,6 +13,8 @@ namespace Project
         public Quanly()
         {
             InitializeComponent();
+            UCQLLH QLLH = new UCQLLH();
+            QLLH.classSelected += UCQLLH_to_UCQLSV;
         }
 
         private void Quanly_Load(object sender, EventArgs e)
@@ -28,6 +30,7 @@ namespace Project
         private void quảnLýLớpHọcToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UCQLLH QLLH = new UCQLLH();
+            QLLH.classSelected += UCQLLH_to_UCQLSV;
             panel1.Controls.Clear();
             panel1.Controls.Add(QLLH);
             btn_toolitem1.Font = new Font(btn_toolitem1.Font, FontStyle.Regular);
@@ -37,6 +40,15 @@ namespace Project
         private void quanlyToolStripMenuItem_Click(object sender, EventArgs e)
         {
             UCQLSV QLSV = new UCQLSV();
+            panel1.Controls.Clear();
+            panel1.Controls.Add(QLSV);
+            btn_toolitem1.Font = new Font(btn_toolitem1.Font, FontStyle.Bold);
+            btn_Toolitem2.Font = new Font(btn_Toolitem2.Font, FontStyle.Regular);
+        }
+
+        private void UCQLLH_to_UCQLSV(string malop)
+        {
+            UCQLSV QLSV = new UCQLSV(malop);
             panel1.Controls.Clear();
             panel1.Controls.Add(QLSV);
             btn_toolitem1.Font = new Font(btn_toolitem1.Font, FontStyle.Bold);
