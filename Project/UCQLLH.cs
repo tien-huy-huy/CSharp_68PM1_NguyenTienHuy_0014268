@@ -43,7 +43,6 @@ namespace Project
                 from lh in db.tbl_lophocs
                 select new
                 {
-                    lh.id,
                     lh.tenlop,
                     lh.malop,
                     lh.ghichu
@@ -54,7 +53,7 @@ namespace Project
                 query = query.Where(x =>
                     x.malop.Contains(keyword) ||
                     x.tenlop.Contains(keyword) ||
-                    x.id.ToString().Contains(keyword));
+                    x.ghichu.Contains(keyword));
             }
 
             totalPage = (int)Math.Ceiling((double)query.Count() / pageSize);
@@ -99,7 +98,6 @@ namespace Project
         private void button1_Click(object sender, EventArgs e)
         {
             tbl_lophoc lh = new tbl_lophoc();
-            lh.id = int.Parse(textBox1.Text);
             lh.malop = textBox2.Text;
             lh.tenlop = textBox3.Text;
             lh.ghichu = textBox4.Text;
@@ -124,7 +122,6 @@ namespace Project
             {
                 DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
 
-                textBox1.Text = row.Cells["id"].Value?.ToString();
                 textBox2.Text = row.Cells["malop"].Value?.ToString();
                 textBox3.Text = row.Cells["tenlop"].Value?.ToString();
                 textBox4.Text = row.Cells["ghichu"].Value?.ToString();
@@ -134,23 +131,50 @@ namespace Project
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //tbl_lophoc lh = new tbl_lophoc();
-            //lh.id = int.Parse(textBox1.Text);
-            //lh.malop = textBox2.Text;
-            //lh.tenlop = textBox3.Text;
-            //lh.ghichu = textBox4.Text;
+            tbl_lophoc lh = new tbl_lophoc();
+            lh.malop = textBox2.Text;
+            lh.tenlop = textBox3.Text;
+            lh.ghichu = textBox4.Text;
 
-            //var lophoc = db.tbl_lophocs.FirstOrDefault(s => s.id == lh.id);
+            var lophoc = db.tbl_lophocs.FirstOrDefault(s => s.malop == lh.malop);
+            var student = db.tbl_sinhviens.FirstOrDefault(s => s.malop == lh.malop);
 
-            //if (lophoc != null)
-            //{
-            //    lophoc.malop = lh.malop;
-            //    lophoc.tenlop = lh.tenlop;
-            //    lophoc.ghichu = lh.ghichu;
-            //    db.SubmitChanges();
-            //    MessageBox.Show("Cập nhật thành công");
-            //    LoadData();
-            //}
+            if (lophoc != null)
+            {
+                if (student != null)
+                {
+                    student.malop = lh.malop;
+                }
+                lophoc.malop = lh.malop;
+                lophoc.tenlop = lh.tenlop;
+                lophoc.ghichu = lh.ghichu;
+                db.SubmitChanges();
+                MessageBox.Show("Cập nhật thành công");
+                LoadData();
+            }
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            string id = textBox2.Text;
+
+            var lophoc = db.tbl_lophocs.FirstOrDefault(s => s.malop == id);
+            var sinhvien = db.tbl_sinhviens.FirstOrDefault(s => s.malop == id);
+            if (lophoc != null)
+            {
+                if (sinhvien == null)
+                {
+                    db.tbl_lophocs.DeleteOnSubmit(lophoc);
+                }
+                else
+                {
+                    lophoc.ghichu = "xoa tam thoi";
+                }
+                db.SubmitChanges();
+                MessageBox.Show("Xóa thành công");
+                currentPage = 1;
+                LoadData();
+            }
         }
     }
 }
