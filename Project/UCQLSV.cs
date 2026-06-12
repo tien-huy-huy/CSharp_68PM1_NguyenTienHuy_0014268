@@ -7,6 +7,7 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Project
 {
@@ -127,6 +128,21 @@ namespace Project
             catch (Exception ex)
             {
                 MessageBox.Show("Lỗi: " + ex.Message);
+            }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                textBox1.Text = row.Cells["Column1"].Value?.ToString();
+                textBox2.Text = row.Cells["Column2"].Value?.ToString();
+                dateTimePicker1.Text = row.Cells["Column4"].Value?.ToString();
+                comboBox1.Text = row.Cells["gioitinh"].Value?.ToString();
+                comboBox2.Text = row.Cells["Column5"].Value?.ToString();
+                textBox5.Text = row.Cells["ghichu"].Value?.ToString();
             }
         }
     }

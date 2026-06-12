@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
+using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using System.Linq;
-using System.IO;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace Project
 {
@@ -114,6 +115,21 @@ namespace Project
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+
+                textBox1.Text = row.Cells["id"].Value?.ToString();
+                textBox2.Text = row.Cells["malop"].Value?.ToString();
+                textBox3.Text = row.Cells["tenlop"].Value?.ToString();
+                textBox4.Text = row.Cells["ghichu"].Value?.ToString();
+            }
+            
         }
     }
 }
